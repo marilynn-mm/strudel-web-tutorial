@@ -1,6 +1,60 @@
 import { SEGMENTS } from './content.js';
 
+// --- participant logging ------------------------------------------------
+// PID comes from the URL (`?pid=P07`). Events are keyed by PID in
+// localStorage so switching participants gives a clean bucket, and
+// kept in memory so Download reflects the current session exactly.
+// No network calls — downloads use a Blob object URL.
+
+const PID = (new URLSearchParams(location.search).get('pid') || '').trim() || 'anon';
+const LOG_KEY = `strudel-tutorial-log-${PID}`;
+
+function loadEvents() {
+  try {
+    const raw = localStorage.getItem(LOG_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch {
+    return [];
+  }
+}
+
+const events = loadEvents();
+
+function persist() {
+  try {
+    localStorage.setItem(LOG_KEY, JSON.stringify(events));
+  } catch {
+    // Quota or private-mode — in-memory logging keeps working.
+  }
+}
+
+function logEvaluate(blockId, code) {
+  events.push({
+    timestamp: new Date().toISOString(),
+    pid: PID,
+    blockId,
+    code,
+  });
+  persist();
+}
+
+function downloadLog() {
+  const blob = new Blob([JSON.stringify(events, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  const stamp = new Date().toISOString().replace(/[:.]/g, '-');
+  a.download = `strudel-log-${PID}-${stamp}.json`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+// --- rendering ----------------------------------------------------------
+
 const root = document.getElementById('segments');
+const editorRefs = []; // {editorEl, blockId} — hooked after mount.
 
 function el(tag, props = {}, children = []) {
   const node = document.createElement(tag);
@@ -22,8 +76,7 @@ function renderText(item) {
   }
   // 'try'
   const p = el('p', { class: 'try' });
-  const label = el('strong', { text: 'Try: ' });
-  p.appendChild(label);
+  p.appendChild(el('strong', { text: 'Try: ' }));
   p.appendChild(document.createTextNode(item.body));
   if (item.code) {
     p.appendChild(document.createTextNode(' '));
@@ -50,6 +103,7 @@ function renderBlock(block) {
   const editor = document.createElement('strudel-editor');
   editor.setAttribute('code', block.start);
   wrap.appendChild(editor);
+  editorRefs.push({ editorEl: editor, blockId: block.id });
 
   const toolbar = el('div', { class: 'toolbar' });
   const playBtn = el('button', { type: 'button', class: 'play', text: 'Play' });
@@ -95,3 +149,26 @@ function renderSegment(seg) {
 for (const seg of SEGMENTS) {
   root.appendChild(renderSegment(seg));
 }
+
+// Custom-element connectedCallback has fired by this point, so each
+// <strudel-editor>.editor is a live StrudelMirror. Wrapping evaluate on
+// the instance catches every path that triggers a run: Ctrl+Enter,
+// Alt+Enter, and the Play button (which also calls editor.evaluate()).
+for (const { editorEl, blockId } of editorRefs) {
+  const sm = editorEl.editor;
+  if (!sm || typeof sm.evaluate !== 'function') continue;
+  const origEvaluate = sm.evaluate.bind(sm);
+  sm.evaluate = async (autostart = true) => {
+    logEvaluate(blockId, sm.code);
+    return origEvaluate(autostart);
+  };
+}
+
+// --- footer: PID display + Download log ---------------------------------
+
+const footer = el('footer', { class: 'footer' });
+footer.appendChild(el('p', { class: 'pid', text: `Participant: ${PID}` }));
+const dlBtn = el('button', { type: 'button', class: 'download', text: 'Download log' });
+dlBtn.addEventListener('click', downloadLog);
+footer.appendChild(dlBtn);
+document.querySelector('main').appendChild(footer);

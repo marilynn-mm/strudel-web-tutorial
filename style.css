@@ -67,6 +67,24 @@ strudel-editor {
   cursor: pointer;
 }
 
+.footer {
+  margin: 3rem 0 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #ddd;
+}
+
+.footer .pid {
+  margin: 0 0 0.5rem;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.footer .download {
+  padding: 0.3rem 0.8rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
 kbd {
   padding: 0.05rem 0.3rem;
   border: 1px solid #999;
