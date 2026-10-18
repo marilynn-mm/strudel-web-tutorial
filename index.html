@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Strudel tutorial</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Strudel pinned to 1.3.0. Verified API in repl-component.mjs / codemirror.mjs:
+       el.editor.setCode(code), el.editor.stop(). -->
+  <script src="https://unpkg.com/@strudel/repl@1.3.0"></script>
+</head>
+<body>
+  <main id="app">
+    <header>
+      <h1>Strudel tutorial</h1>
+      <ul class="howto">
+        <li>Click into a block to focus the editor.</li>
+        <li><kbd>Ctrl</kbd>+<kbd>Enter</kbd> runs the code. <kbd>Ctrl</kbd>+<kbd>.</kbd> stops it.</li>
+        <li>Stop one block before running the next.</li>
+        <li><strong>Reset</strong> restores the starting code for that block.</li>
+      </ul>
+    </header>
+    <div id="segments"></div>
+  </main>
+  <script type="module" src="main.js"></script>
+</body>
+</html>
