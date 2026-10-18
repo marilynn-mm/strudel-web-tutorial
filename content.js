@@ -1,6 +1,6 @@
 // All tutorial content lives here. main.js renders this into the page.
-// Every text body is a [DRAFT] placeholder — Marilyn writes the final text.
-// `end` is reference-only; not shown on the page. `vr` and `source` are notes.
+// Text is a first-draft script. Marilyn will refine.
+// `end` is reference-only (not shown on the page). `vr` and `source` are notes.
 
 export const SEGMENTS = [
   {
@@ -14,12 +14,12 @@ export const SEGMENTS = [
         optional: false,
         source: 'Workshop: First Sounds → Code Fields, Sequences',
         text: [
-          { type: 'explain', body: '[DRAFT] The cycle is a loop you divide, not a timeline. One sound fills it. `$:` = one pattern.' },
-          { type: 'try', body: '[DRAFT] Try this, then 4 steps, then 8 — faster, but the loop length is the same.', code: '$: s("bd bd")' },
-          { type: 'explain', body: '[DRAFT] Longer sequence = faster.' },
-          { type: 'try', body: '[DRAFT] Replace some `bd` with `~` — hear gaps.' },
-          { type: 'explain', body: '[DRAFT] Silence is a step too.' },
-          { type: 'try', body: '[DRAFT] Divide the cycle into 3, then 5, then 8 steps, starting with `bd`.' },
+          { type: 'explain', body: 'A Strudel pattern is a loop. One trip around the loop is a cycle. Everything happens inside it. Divide the cycle into steps and drop a sound in each. One sound on its own fills the whole cycle. Each `$:` line is one pattern.' },
+          { type: 'try', body: '`s("bd bd")` splits the cycle into two steps. Try four. Try eight. Same loop length. The pulses come faster.', code: '$: s("bd bd")' },
+          { type: 'explain', body: 'Longer sequence = faster.' },
+          { type: 'try', body: 'Replace a `bd` with `~` to leave a gap.' },
+          { type: 'explain', body: 'Silence is a step too.' },
+          { type: 'try', body: 'Divide the cycle into 3 steps. Then 5. Then 8. Start each with `bd`.' },
         ],
         start: `samples('github:tidalcycles/dirt-samples')
 
@@ -32,12 +32,12 @@ $: s("bd")`,
         optional: false,
         source: 'Workshop: First Sounds → Drum Sounds; First Notes → Playing multiple patterns',
         text: [
-          { type: 'explain', body: '[DRAFT] Drum names: bd, sd, cp, hh, ho, rs, ht, cr. One drum per line.' },
-          { type: 'try', body: '[DRAFT] Add a clap line.', code: '$: s("~ cp ~ cp")' },
-          { type: 'try', body: '[DRAFT] Add a hat line.', code: '$: s("~ hh ~ hh ~ hh ~ hh")' },
-          { type: 'explain', body: '[DRAFT] `.gain()` sets volume.' },
-          { type: 'try', body: '[DRAFT] Add `.gain(0.3)` on the hats.' },
-          { type: 'try', body: '[DRAFT] Delete one line.' },
+          { type: 'explain', body: 'Drum names are short codes. `bd` = bass drum. `sd` = snare. `cp` = clap. `hh` = closed hat. `ho` = open hat. `rs` = rimshot. `ht` = high tom. `cr` = cymbal. One drum per `$:` line.' },
+          { type: 'try', body: 'Add a clap on a new line.', code: '$: s("~ cp ~ cp")' },
+          { type: 'try', body: 'Add hats on a new line.', code: '$: s("~ hh ~ hh ~ hh ~ hh")' },
+          { type: 'explain', body: '`.gain()` sets volume.' },
+          { type: 'try', body: 'Turn the hats down.', code: '.gain(0.3)' },
+          { type: 'try', body: 'Delete a line.' },
         ],
         start: `samples('github:tidalcycles/dirt-samples')
 
@@ -50,9 +50,9 @@ $: s("bd bd bd bd")`,
         optional: false,
         source: 'Workshop: First Sounds → Sub-sequences, Sub-sub-sequences',
         text: [
-          { type: 'explain', body: '[DRAFT] `[ ]` turns one step into its own small cycle.' },
-          { type: 'try', body: '[DRAFT] Try `bd ~ bd ~`, then `bd ~ [~ bd] ~`.' },
-          { type: 'try', body: '[DRAFT] Nest deeper.', code: '[bd [bd bd]]' },
+          { type: 'explain', body: 'Brackets turn one step into its own small cycle. Sounds inside split that step the same way the whole cycle splits.' },
+          { type: 'try', body: 'Change the pattern to `bd ~ bd ~`. Then try the bracketed version.', code: 'bd ~ [~ bd] ~' },
+          { type: 'try', body: 'Nest brackets inside brackets.', code: '[bd [bd bd]]' },
         ],
         start: `samples('github:tidalcycles/dirt-samples')
 
@@ -67,10 +67,11 @@ $: s("bd ~ [~ bd] ~")`,
         optional: true,
         source: 'Workshop: First Sounds → `< >`, Multiplication, Parallel',
         text: [
-          { type: 'explain', body: '[DRAFT] `< >` picks one option per cycle.' },
-          { type: 'try', body: '[DRAFT] Run it; count cycles.' },
-          { type: 'explain', body: '[DRAFT] `*` repeats a step faster; a comma plays two patterns at once.' },
-          { type: 'try', body: '[DRAFT] Try these.', code: 's("bd hh*2 bd hh*3"), then s("bd*2, hh*3")' },
+          { type: 'explain', body: 'Angle brackets pick one option per cycle. The pattern rotates through them.' },
+          { type: 'try', body: 'Run it. Count cycles out loud.' },
+          { type: 'explain', body: '`*` repeats a step faster. A comma inside a pattern plays two patterns at once.' },
+          { type: 'try', body: 'Multiply a step.', code: 's("bd hh*2 bd hh*3")' },
+          { type: 'try', body: 'Play two patterns in parallel.', code: 's("bd*2, hh*3")' },
         ],
         start: `samples('github:tidalcycles/dirt-samples')
 
@@ -91,9 +92,9 @@ $: s("bd <sd cp> bd bd")`,
         optional: false,
         source: 'Workshop: First Notes → Changing the sound, Scales',
         text: [
-          { type: 'explain', body: '[DRAFT] Drums choose which sound; synths choose which pitch. `n` numbers are steps of a scale, so any number fits.' },
-          { type: 'try', body: '[DRAFT] Change `0` → `2` → `4`.' },
-          { type: 'try', body: '[DRAFT] Change the waveform: `triangle` → `square` → `sawtooth` → `sine` → `arpy` — same note, different color.' },
+          { type: 'explain', body: 'Drums pick a sound. Synths pick a pitch. The number in `n` is a step on a scale. Any number fits.' },
+          { type: 'try', body: 'Change `0` to `2`. Then try `4`.' },
+          { type: 'try', body: 'Swap the waveform. Try `square`, `sawtooth`, `sine`, `arpy`. Same note. Different color.' },
         ],
         start: `samples('github:tidalcycles/dirt-samples')
 
@@ -107,11 +108,11 @@ $: n("0").scale("G4:major").s("triangle")`,
         optional: false,
         source: 'Workshop: First Notes → Elongating with `@`',
         text: [
-          { type: 'try', body: '[DRAFT] Four steps.', code: 'n("0 0 0 0")' },
-          { type: 'try', body: '[DRAFT] Split the first.', code: 'n("[0 0] 0 0 0")' },
-          { type: 'try', body: '[DRAFT] Set the numbers.', code: 'n("[0 0] 1 2 2")' },
-          { type: 'explain', body: '[DRAFT] `@` stretches a note across steps.' },
-          { type: 'try', body: '[DRAFT] The last note is held.', code: 'n("[0 0] 1 2@2")' },
+          { type: 'try', body: 'Four steps on the same note.', code: 'n("0 0 0 0")' },
+          { type: 'try', body: 'Split the first step.', code: 'n("[0 0] 0 0 0")' },
+          { type: 'try', body: 'Change the numbers.', code: 'n("[0 0] 1 2 2")' },
+          { type: 'explain', body: '`@` stretches a note across steps.' },
+          { type: 'try', body: 'Hold the last note.', code: 'n("[0 0] 1 2@2")' },
         ],
         start: `samples('github:tidalcycles/dirt-samples')
 
@@ -128,10 +129,10 @@ $: n("[0 0] 1 2@2").scale("G4:major").s("triangle")`,
         optional: false,
         source: 'Workshop: First Notes → Scales; chords (new text)',
         text: [
-          { type: 'explain', body: '[DRAFT] A comma inside brackets plays notes together.' },
-          { type: 'try', body: '[DRAFT] Try a chord.', code: 'n("[0 0] 1 [2,4]@2")' },
-          { type: 'try', body: '[DRAFT] Change the scale from `G4:major` to `C4:major`.' },
-          { type: 'try', body: '[DRAFT] Add `.scaleTranspose(1)` — the whole tune moves up one step.' },
+          { type: 'explain', body: 'A comma inside brackets stacks notes. They play at the same time.' },
+          { type: 'try', body: 'Add a chord on the held note.', code: 'n("[0 0] 1 [2,4]@2")' },
+          { type: 'try', body: 'Move the scale. Change `G4:major` to `C4:major`.' },
+          { type: 'try', body: 'Shift the whole tune up one step.', code: '.scaleTranspose(1)' },
         ],
         start: `samples('github:tidalcycles/dirt-samples')
 
@@ -148,8 +149,8 @@ $: n("[0 0] 1 [2,4]@2").scale("C4:major").s("triangle").scaleTranspose(1)`,
         optional: true,
         source: 'Workshop: First Notes → One item per cycle, Automating scales',
         text: [
-          { type: 'try', body: '[DRAFT] Run it — one note per cycle.' },
-          { type: 'try', body: '[DRAFT] Alternate scales.', code: '.scale("<C4:major A3:minor>")' },
+          { type: 'try', body: 'Run it. One note plays per cycle.' },
+          { type: 'try', body: 'Alternate scales each cycle.', code: '.scale("<C4:major A3:minor>")' },
         ],
         start: `samples('github:tidalcycles/dirt-samples')
 
@@ -170,12 +171,13 @@ $: n("<0 2 4>").scale("C4:major").s("triangle")`,
         optional: false,
         source: 'Workshop: First Effects → Fast and slow; Pattern Effects → `rev`',
         text: [
-          { type: 'explain', body: '[DRAFT] So far you changed the pattern itself. Now leave it alone and wrap it in a function.' },
-          { type: 'try', body: '[DRAFT] Add `.slow(2)` on kick and clap; `.fast(2)` on hats.' },
-          { type: 'explain', body: '[DRAFT] `.rev()` plays a pattern backwards.' },
-          { type: 'try', body: '[DRAFT] Add `.rev()` on the rim pickup, then the melody — the answer comes first.' },
-          { type: 'try', body: '[DRAFT] Add `.slow(1.5)` on the arp — listen to it drift.' },
-          { type: 'try', body: '[DRAFT] Mute the pad with `_$:`, then unmute.' },
+          { type: 'explain', body: 'Patterns can also be wrapped in functions. The pattern stays the same. The function changes how it plays.' },
+          { type: 'try', body: 'Slow the kick and clap.', code: '.slow(2)' },
+          { type: 'try', body: 'Speed the hats up.', code: '.fast(2)' },
+          { type: 'explain', body: '`.rev()` plays a pattern backwards.' },
+          { type: 'try', body: 'Reverse the rim pickup. Then reverse the melody too. The answer comes before the question.' },
+          { type: 'try', body: 'Pull the arp slightly out of time.', code: '.slow(1.5)' },
+          { type: 'try', body: 'Mute the pad by changing `$:` to `_$:`. Change it back.' },
         ],
         start: `samples('github:tidalcycles/dirt-samples')
 setcps(0.5)
@@ -212,8 +214,8 @@ $: n("[0,2,4]@2 [-2,0,2]@2").scale("C3:minor").s("sawtooth")
         optional: true,
         source: 'Workshop: Pattern Effects → `jux`, `ply`',
         text: [
-          { type: 'try', body: '[DRAFT] Add this.', code: '.jux(rev)' },
-          { type: 'try', body: '[DRAFT] Add this.', code: '.ply(2)' },
+          { type: 'try', body: 'Split the melody left and right. The right side plays backwards.', code: '.jux(rev)' },
+          { type: 'try', body: 'Repeat each note.', code: '.ply(2)' },
         ],
         start: `samples('github:tidalcycles/dirt-samples')
 setcps(0.5)
@@ -236,10 +238,10 @@ $: n("[0 2] 4 [5 4] ~  [7 ~ 5] 4 [2 0] ~").scale("C5:minor")
         optional: false,
         source: 'Workshop: First Effects → Low-pass filter',
         text: [
-          { type: 'explain', body: '[DRAFT] Effects change the sound, not time or pitch. The low-pass filter cuts highs: a low value sounds muffled.' },
-          { type: 'try', body: '[DRAFT] Change `lp` from `300` to `8000` and re-run — the chords emerge.' },
-          { type: 'explain', body: '[DRAFT] One value can feed many patterns.' },
-          { type: 'try', body: '[DRAFT] Add `.lpf(lp).lpq(8)` to every line. Close it (`300`), then open it (`8000`).' },
+          { type: 'explain', body: 'Effects shape the sound of a note. Time and pitch stay the same. A low-pass filter cuts high frequencies. Low values sound muffled.' },
+          { type: 'try', body: 'Open the filter. Change `lp` from `300` to `8000`. The chords come out.' },
+          { type: 'explain', body: 'One value can feed many patterns at once. That is what `lp` is doing.' },
+          { type: 'try', body: 'Add `.lpf(lp).lpq(8)` to every line. Close `lp` back to `300`. Then open it to `8000`.' },
         ],
         start: `samples('github:tidalcycles/dirt-samples')
 setcps(0.53)
@@ -280,9 +282,9 @@ $: n("[0 2 4 7] [9 7 4 2] [0 2 4 7] [11 9 7 4]")
         optional: false,
         source: 'new text (HPF is not in the workshop)',
         text: [
-          { type: 'explain', body: '[DRAFT] The high-pass filter cuts lows. Pushing it up builds tension; pulling it down is the drop.' },
-          { type: 'try', body: '[DRAFT] Add `.hpf(hp)` to kick and bass; raise `hp` to `2000`.' },
-          { type: 'try', body: '[DRAFT] Bring `hp` back to `20`.' },
+          { type: 'explain', body: 'A high-pass filter cuts low frequencies. Pushing it up builds tension. Dropping it back is the release.' },
+          { type: 'try', body: 'Add `.hpf(hp)` to kick and bass. Raise `hp` to `2000`.' },
+          { type: 'try', body: 'Pull `hp` back to `20`.' },
         ],
         start: `samples('github:tidalcycles/dirt-samples')
 setcps(0.53)
@@ -323,11 +325,12 @@ $: n("[0 2 4 7] [9 7 4 2] [0 2 4 7] [11 9 7 4]")
         optional: false,
         source: 'Workshop: First Effects → ADSR, Delay, Room',
         text: [
-          { type: 'explain', body: '[DRAFT] ADSR sets how each note’s volume rises and fades.' },
-          { type: 'try', body: '[DRAFT] Add `.attack(0.01).decay(0.2).sustain(0.3).release(0.8)` to the chords; lengthen the release.' },
-          { type: 'explain', body: '[DRAFT] Room and delay add space to everything.' },
-          { type: 'try', body: '[DRAFT] Add the `all(...)` line at the bottom; raise `room`, then `delay`.' },
-          { type: 'try', body: '[DRAFT] Raise `setcps` to `0.6`.' },
+          { type: 'explain', body: 'ADSR shapes how each note swells and fades.' },
+          { type: 'try', body: 'Shape the chord envelope.', code: '.attack(0.01).decay(0.2).sustain(0.3).release(0.8)' },
+          { type: 'try', body: 'Make the release longer. Try `1.5`.' },
+          { type: 'explain', body: 'Room and delay add space to everything.' },
+          { type: 'try', body: 'Paste the `all(...)` line at the bottom. Raise `room`. Then raise `delay`.' },
+          { type: 'try', body: 'Speed everything up.', code: 'setcps(0.6)' },
         ],
         start: `samples('github:tidalcycles/dirt-samples')
 setcps(0.53)
@@ -374,9 +377,9 @@ all(x => x.room(room).roomsize(4).delay(delay).delaytime(0.375).delayfeedback(0.
         optional: true,
         source: 'Workshop: First Effects → Pattern the filter, Signals, Range',
         text: [
-          { type: 'explain', body: '[DRAFT] Effect values can be patterns too.' },
-          { type: 'try', body: '[DRAFT] Run it — the filter changes every cycle.' },
-          { type: 'try', body: '[DRAFT] Swap in a slow sweep.', code: '.lpf(sine.range(300, 3000).slow(4))' },
+          { type: 'explain', body: 'Effect values can also be patterns.' },
+          { type: 'try', body: 'Run it. The filter changes every cycle.' },
+          { type: 'try', body: 'Swap in a slow sine sweep.', code: '.lpf(sine.range(300, 3000).slow(4))' },
         ],
         start: `samples('github:tidalcycles/dirt-samples')
 setcps(0.53)
@@ -400,7 +403,7 @@ $: n("[~ [0,2,4,6]] [~ [0,2,4,6]] [~ [0,2,4,6]] [~ [-1,1,3,5]]")
         optional: false,
         source: 'docs/tutorial-s5-instructions.md — Piece A, Step 1 (Listen) loadout',
         text: [
-          { type: 'explain', body: '[DRAFT] Nothing new. Play with everything so far.' },
+          { type: 'explain', body: 'A house piece. Everything from the tutorial so far. Add, mute, or change anything.' },
         ],
         start: `samples('github:tidalcycles/dirt-samples')
 setcps(0.52)
@@ -424,7 +427,7 @@ all(x => x.room(room).roomsize(6).delay(delay).delaytime(0.375).delayfeedback(0.
         optional: false,
         source: 'docs/tutorial-s5-instructions.md — Piece B, Step 1 (Listen) loadout',
         text: [
-          { type: 'explain', body: '[DRAFT] Nothing new. Play with everything so far.' },
+          { type: 'explain', body: 'A techno piece. Same deal. Add, mute, or change anything.' },
         ],
         start: `samples('github:tidalcycles/dirt-samples')
 setcps(0.54)
@@ -458,7 +461,7 @@ all(x => x.room(room).roomsize(4).delay(delay).delaytime(0.375).delayfeedback(0.
         optional: false,
         source: 'free',
         text: [
-          { type: 'explain', body: '[DRAFT] An empty editor. (The study task runs here.)' },
+          { type: 'explain', body: 'An empty editor. Try anything you have picked up. Or something new.' },
         ],
         start: `samples('github:tidalcycles/dirt-samples')
 
