@@ -129,10 +129,10 @@ $: n("[0 0] 1 2@2").scale("G4:major").s("triangle")`,
         optional: false,
         source: 'Workshop: First Notes → Scales; chords (new text)',
         text: [
-          { type: 'explain', body: 'A comma inside brackets stacks notes. They play at the same time.' },
+          { type: 'explain', body: 'A comma inside brackets stacks notes. They play at the same time. Chords with no theory.' },
           { type: 'try', body: 'Add a chord on the held note.', code: 'n("[0 0] 1 [2,4]@2")' },
           { type: 'try', body: 'Move the scale. Change `G4:major` to `C4:major`.' },
-          { type: 'try', body: 'Shift the whole tune up one step.', code: '.scaleTranspose(1)' },
+          { type: 'try', body: 'Shift the whole tune up one step. Instant modulation.', code: '.scaleTranspose(1)' },
         ],
         start: `samples('github:tidalcycles/dirt-samples')
 
@@ -150,7 +150,7 @@ $: n("[0 0] 1 [2,4]@2").scale("C4:major").s("triangle").scaleTranspose(1)`,
         source: 'Workshop: First Notes → One item per cycle, Automating scales',
         text: [
           { type: 'try', body: 'Run it. One note plays per cycle.' },
-          { type: 'try', body: 'Alternate scales each cycle.', code: '.scale("<C4:major A3:minor>")' },
+          { type: 'try', body: 'Alternate scales each cycle. The whole song shifts key without rewriting notes.', code: '.scale("<C4:major A3:minor>")' },
         ],
         start: `samples('github:tidalcycles/dirt-samples')
 
@@ -171,13 +171,13 @@ $: n("<0 2 4>").scale("C4:major").s("triangle")`,
         optional: false,
         source: 'Workshop: First Effects → Fast and slow; Pattern Effects → `rev`',
         text: [
-          { type: 'explain', body: 'Patterns can also be wrapped in functions. The pattern stays the same. The function changes how it plays.' },
+          { type: 'explain', body: 'Patterns can also be wrapped in functions. The pattern stays the same. The function changes how it plays. Each voice gets its own time.' },
           { type: 'try', body: 'Slow the kick and clap.', code: '.slow(2)' },
           { type: 'try', body: 'Speed the hats up.', code: '.fast(2)' },
-          { type: 'explain', body: '`.rev()` plays a pattern backwards.' },
+          { type: 'explain', body: '`.rev()` plays a pattern backwards. A cheap way to answer a phrase.' },
           { type: 'try', body: 'Reverse the rim pickup. Then reverse the melody too. The answer comes before the question.' },
           { type: 'try', body: 'Pull the arp slightly out of time.', code: '.slow(1.5)' },
-          { type: 'try', body: 'Mute the pad by changing `$:` to `_$:`. Change it back.' },
+          { type: 'try', body: 'Mute the pad by changing `$:` to `_$:`. Change it back. Drop parts out live without deleting.' },
         ],
         start: `samples('github:tidalcycles/dirt-samples')
 setcps(0.5)
