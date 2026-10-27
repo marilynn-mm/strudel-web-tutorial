@@ -200,7 +200,6 @@ All code uses `s()` (not `sound()`), `n()` + `.scale()` for pitch (never `note()
 - explain: Longer sequence = faster.
 - try: Replace some `bd` with `~` — hear gaps.
 - explain: Silence is a step too.
-- try: Divide the cycle into 3, then 5, then 8 steps, starting with `bd`.
 
 ```js
 samples('github:tidalcycles/dirt-samples')
@@ -216,7 +215,6 @@ end: null
 - try: Add `$: s("~ hh ~ hh ~ hh ~ hh")`.
 - explain: `.gain()` sets volume.
 - try: `.gain(0.3)` on the hats.
-- try: Delete one line.
 
 ```js
 samples('github:tidalcycles/dirt-samples')
@@ -240,8 +238,7 @@ end: `$: s("bd ~ [~ bd] ~")`
 
 **1.4 Variation** *(web extra)* — source: First Sounds → `< >`, Multiplication, Parallel
 
-- explain: `< >` picks one option per cycle.
-- try: Run it; count cycles.
+- explain: `< >` picks one option per cycle. Run it and listen for the swap.
 - explain: `*` repeats a step faster; a comma plays two patterns at once.
 - try: `s("bd hh*2 bd hh*3")`, then `s("bd*2, hh*3")`.
 
@@ -270,8 +267,7 @@ end: null
 
 **2.2 Melody shape** — source: First Notes → Elongating with `@`
 
-- try: Four steps: `n("0 0 0 0")`.
-- try: Split the first: `n("[0 0] 0 0 0")`.
+- try: Four steps, first one split: `n("[0 0] 0 0 0")`.
 - try: Set the numbers: `n("[0 0] 1 2 2")`.
 - explain: `@` stretches a note across steps.
 - try: `n("[0 0] 1 2@2")` — the last note is held.
@@ -292,7 +288,6 @@ $: n("[0 0] 1 2@2").scale("G4:major").s("triangle")
 
 - explain: A comma inside brackets plays notes together.
 - try: `n("[0 0] 1 [2,4]@2")`.
-- try: Change the scale from `G4:major` to `C4:major`.
 - try: Add `.scaleTranspose(1)` — the whole tune moves up one step.
 
 ```js
@@ -304,7 +299,7 @@ $: n("[0 0] 1 2@2").scale("G4:major").s("triangle")
 end (Fanfare, = VR S2 end state):
 ```js
 $: s("bd ~ [~ bd] ~")
-$: n("[0 0] 1 [2,4]@2").scale("C4:major").s("triangle").scaleTranspose(1)
+$: n("[0 0] 1 [2,4]@2").scale("G4:major").s("triangle").scaleTranspose(1)
 ```
 
 **2.4 Changing over time** *(web extra)* — source: First Notes → One item per cycle, Automating scales
@@ -327,7 +322,6 @@ end: null
 - try: `.slow(2)` on kick and clap; `.fast(2)` on hats.
 - explain: `.rev()` plays a pattern backwards.
 - try: `.rev()` on the rim pickup, then the melody — the answer comes first.
-- try: `.slow(1.5)` on the arp — listen to it drift.
 - try: Mute the pad with `_$:`, then unmute.
 
 ```js
@@ -357,7 +351,7 @@ $: s("hh hh [hh hh] hh").fast(2).gain(0.25)
 $: s("~ ~ ~ [rs rs rs]").rev().gain(0.5)
 $: n("0 ~ ~ [~ 3 5]").scale("C2:minor").s("square").gain(0.4)
 $: n("0 2 4 7 9 11 14 16").scale("C4:minor").s("arpy")
-    .slow(1.5).gain(0.3)
+    .gain(0.3)
 $: n("[0 2] 4 [5 4] ~  [7 ~ 5] 4 [2 0] ~").scale("C5:minor")
     .s("triangle").slow(2).rev().gain(0.3)
 $: n("[0,2,4]@2 [-2,0,2]@2").scale("C3:minor").s("sawtooth")
@@ -437,10 +431,9 @@ end: kick and bass have `.hpf(hp)`, `hp = 20`.
 **4.3 Shape & space** — source: First Effects → ADSR, Delay, Room
 
 - explain: ADSR sets how each note's volume rises and fades.
-- try: Add `.attack(0.01).decay(0.2).sustain(0.3).release(0.8)` to the chords; lengthen the release.
+- try: Add `.attack(0.01).decay(0.2).sustain(0.3).release(0.8)` to the chords.
 - explain: Room and delay add space to everything.
 - try: Add the `all(...)` line at the bottom; raise `room`, then `delay`.
-- try: Raise `setcps` to `0.6`.
 
 ```js
 samples('github:tidalcycles/dirt-samples')
@@ -463,7 +456,7 @@ $: n("[0 2 4 7] [9 7 4 2] [0 2 4 7] [11 9 7 4]")
 end (= VR S4 end state):
 ```js
 samples('github:tidalcycles/dirt-samples')
-setcps(0.6)
+setcps(0.53)
 const lp = 8000, q = 8
 const hp = 20
 const room = 0.5, delay = 0.4
